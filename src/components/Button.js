@@ -1,14 +1,11 @@
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  color: ${(props) => props.theme.colors.red};
+`;
+
 export const Button = ({ text, onClick }) => {
-  return (
-    <button
-      animate={{ scale: 1 }}
-      initial={{ scale: 0 }}
-      exit={{ scale: 0 }}
-      onClick={onClick}
-    >
-      {text}
-    </button>
-  );
+  return <StyledButton onClick={onClick}>{text}</StyledButton>;
 };
 
 export default Button;
