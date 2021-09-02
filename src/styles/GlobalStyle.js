@@ -7,5 +7,7 @@ export const GlobalStyle = css`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 400;
   }
 `;

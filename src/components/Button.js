@@ -1,11 +1,20 @@
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  color: ${(props) => props.theme.colors.red};
+  border: none;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const Button = ({ text, onClick }) => {
-  return <StyledButton onClick={onClick}>{text}</StyledButton>;
+export const Button = ({ children, onClick, className }) => {
+  return (
+    <StyledButton className={className} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;

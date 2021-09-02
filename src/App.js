@@ -1,28 +1,59 @@
 import { useState } from "react";
-import Header from "./components/Header";
+import StyledButton from "./components/Button";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import { nanoid } from "nanoid";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { GlobalStyle } from "./styles/GlobalStyle";
+import styled from "styled-components";
+
+const StyledPage = styled.div`
+  position: relative;
+  min-height: 100vh;
+  padding: 50px 30px;
+  display: flex;
+  background-color: ${(props) => props.theme.colors.blueDarkest};
+  color: ${(props) => props.theme.colors.white};
+`;
+
+const StyledTitle = styled.h1`
+  ${(props) => props.theme.text.h1};
+`;
+
+const StyledTracker = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+`;
+
+const StyledButtonAdd = styled(StyledButton)`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: ${(props) => props.theme.colors.blueLight};
+  color: ${(props) => props.theme.colors.white};
+`;
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([
-    { id: nanoid(), text: "Doctors", complete: false },
-    { id: nanoid(), text: "School", complete: false },
-    { id: nanoid(), text: "Shop", complete: false },
-    { id: nanoid(), text: "Run", complete: false },
-    { id: nanoid(), text: "Eat", complete: false },
+    { id: nanoid(), text: "Walk the dog", complete: false },
+    { id: nanoid(), text: "Go to the doctors", complete: false },
+    { id: nanoid(), text: "Finish web design", complete: true },
+    { id: nanoid(), text: "Find a new flat", complete: false },
+    { id: nanoid(), text: "Arrange dinner party", complete: false },
   ]);
 
   const addTask = (task) => {
-    // Create a random number for the new task ID
+    // Create a random string for the new task ID
     const id = nanoid();
-    // Create a new task with the new ID, and the task data passed in
+    // Create a new task with the new ID, including the task data passed in
     const newTask = { id, ...task };
-    // Set the tasks to an array containing the current tasks, as well as the new task we have created
+    // Set tasks to an array containing the current tasks, as well as the new task we have created
     setTasks([...tasks, newTask]);
   };
 
@@ -31,10 +62,10 @@ const App = () => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const togglecomplete = (id) => {
+  const toggleComplete = (id) => {
     setTasks(
       tasks.map((task) =>
-        // For each task, if the task id is equal to the ID passed in, set the complete of this task to be the opposite of whatever the current complete value is. Else return the task in its current form
+        // For each task, if the task id is equal to the ID passed in, set the complete value of this task to be the opposite of whatever the current complete value is. Otherwise return the task in its current form
         task.id === id ? { ...task, complete: !task.complete } : task
       )
     );
@@ -43,25 +74,38 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <div className="page">
-        <div className="wrapper">
-          <Header
-            title="Task Tracker"
-            onAdd={() => setShowAddTask(!showAddTask)}
-            showAdd={showAddTask}
-          />
+      <StyledPage>
+        <StyledTracker>
+          <StyledTitle>What needs doing?</StyledTitle>
+          <StyledButtonAdd onClick={() => setShowAddTask(!showAddTask)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-plus"
+            >
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </StyledButtonAdd>
           {showAddTask && <AddTask onAdd={addTask} />}
           {tasks.length > 0 ? (
             <Tasks
               tasks={tasks}
               onDelete={deleteTask}
-              onToggle={togglecomplete}
+              onToggle={toggleComplete}
             />
           ) : (
             "Nothing to do!"
           )}
-        </div>
-      </div>
+        </StyledTracker>
+      </StyledPage>
     </ThemeProvider>
   );
 };
