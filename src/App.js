@@ -2,20 +2,22 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
+import { nanoid } from "nanoid";
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([
-    { id: 1, text: "Doctors", day: "today", reminder: false },
-    { id: 2, text: "School", day: "today", reminder: false },
-    { id: 3, text: "Shop", day: "today", reminder: false },
-    { id: 4, text: "Run", day: "today", reminder: false },
-    { id: 5, text: "Eat", day: "today", reminder: false },
+    { id: nanoid(), text: "Doctors", day: "today", reminder: false },
+    { id: nanoid(), text: "School", day: "today", reminder: false },
+    { id: nanoid(), text: "Shop", day: "today", reminder: false },
+    { id: nanoid(), text: "Run", day: "today", reminder: false },
+    { id: nanoid(), text: "Eat", day: "today", reminder: false },
   ]);
+  console.log(tasks);
 
   const addTask = (task) => {
     // Create a random number for the new task ID
-    const id = Math.floor(Math.random() * 10000) + 1;
+    const id = nanoid();
     // Create a new task with the new ID, and the task data passed in
     const newTask = { id, ...task };
     // Set the tasks to an array containing the current tasks, as well as the new task we have created
