@@ -1,0 +1,48 @@
+@import "./fonts/fonts.scss";
+@import "./styles/variables.scss";
+@import "./styles/text.scss";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  background-color: $color-white;
+  color: $color-black;
+  padding: 30px;
+}
+
+h1 {
+  background-color: rgb(213, 213, 213);
+}
+
+header,
+.task,
+h1 {
+  // margin-bottom: 20px;
+}
+
+form {
+  overflow: hidden;
+  // padding-bottom: 20px;
+}
+
+.wrapper {
+  width: 414px;
+}
+
+.page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
