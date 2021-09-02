@@ -1,72 +1,37 @@
+import { useState } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
-import { useState, useEffect } from "react";
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([
+    { id: 1, text: "Doctors", day: "today", reminder: false },
+    { id: 2, text: "School", day: "today", reminder: false },
+    { id: 3, text: "Shop", day: "today", reminder: false },
+    { id: 4, text: "Run", day: "today", reminder: false },
+    { id: 5, text: "Eat", day: "today", reminder: false },
+  ]);
 
-  useEffect(() => {
-    const getTasks = async () => {
-      const tasksFromServer = await fetchTasks();
-      setTasks(tasksFromServer);
-    };
-    getTasks();
-  }, []);
-
-  // fetch tasks
-
-  const fetchTasks = async () => {
-    const res = await fetch("http://localhost:5000/tasks");
-    const data = await res.json();
-    return data;
+  const addTask = (task) => {
+    // Create a random number for the new task ID
+    const id = Math.floor(Math.random() * 10000) + 1;
+    // Create a new task with the new ID, and the task data passed in
+    const newTask = { id, ...task };
+    // Set the tasks to an array containing the current tasks, as well as the new task we have created
+    setTasks([...tasks, newTask]);
   };
 
-  const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`);
-    const data = await res.json();
-    return data;
-  };
-
-  // add Task
-
-  const addTask = async (task) => {
-    const res = await fetch("http://localhost:5000/tasks", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(task),
-    });
-
-    const data = await res.json();
-    setTasks([...tasks, data]);
-
-    // const id = Math.floor(Math.random() * 10000) + 1;
-    // const newTask = { id, ...task };
-    // setTasks([...tasks, newTask]);
-  };
-
-  // delete task
-
-  const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`, { method: "DELETE" });
+  const deleteTask = (id) => {
+    // Filter the tasks, returning only the tasks that do not have an ID of the ID passed in
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  // toggle reminder list
-
-  const toggleReminder = async (id) => {
-    const taskToToggle = await fetchTask(id);
-    const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedTask),
-    });
-    const data = await res.json();
+  const toggleReminder = (id) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, reminder: data.reminder } : task
+        // For each task, if the task id is equal to the ID passed in, set the reminder of this task to be the opposite of whatever the current reminder value is. Else return the task in its current form
+        task.id === id ? { ...task, reminder: !task.reminder } : task
       )
     );
   };
