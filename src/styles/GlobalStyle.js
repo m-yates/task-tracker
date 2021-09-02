@@ -7,7 +7,11 @@ export const GlobalStyle = css`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Noto Sans SC", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
     font-weight: 400;
+  }
+  body {
+    background-color: ${(props) => props.theme.colors.blueDarkest};
+    color: ${(props) => props.theme.colors.white};
   }
 `;

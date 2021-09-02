@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledTasks = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 12px;
 `;
 
 const Tasks = ({ tasks, onDelete, onToggle }) => {

@@ -11,31 +11,33 @@ import styled from "styled-components";
 const StyledPage = styled.div`
   position: relative;
   min-height: 100vh;
-  padding: 50px 30px;
+  padding: 30px 25px;
   display: flex;
-  background-color: ${(props) => props.theme.colors.blueDarkest};
-  color: ${(props) => props.theme.colors.white};
 `;
 
 const StyledTitle = styled.h1`
   ${(props) => props.theme.text.h1};
+  margin-bottom: 15px;
 `;
 
 const StyledTracker = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
 `;
 
 const StyledButtonAdd = styled(StyledButton)`
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 25px;
+  right: 25px;
   width: 60px;
   height: 60px;
   background-color: ${(props) => props.theme.colors.blueLight};
   color: ${(props) => props.theme.colors.white};
+  svg {
+    transform: scale(1.1);
+    transform-origin: center;
+  }
 `;
 
 const App = () => {
@@ -45,7 +47,6 @@ const App = () => {
     { id: nanoid(), text: "Go to the doctors", complete: false },
     { id: nanoid(), text: "Finish web design", complete: true },
     { id: nanoid(), text: "Find a new flat", complete: false },
-    { id: nanoid(), text: "Arrange dinner party", complete: false },
   ]);
 
   const addTask = (task) => {
@@ -65,7 +66,7 @@ const App = () => {
   const toggleComplete = (id) => {
     setTasks(
       tasks.map((task) =>
-        // For each task, if the task id is equal to the ID passed in, set the complete value of this task to be the opposite of whatever the current complete value is. Otherwise return the task in its current form
+        // For each task, if the task id is equal to the ID passed in, set the 'complete' value of this task to be the opposite of whatever the current 'complete' value is. Otherwise return the task in its current form
         task.id === id ? { ...task, complete: !task.complete } : task
       )
     );

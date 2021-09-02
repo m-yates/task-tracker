@@ -12,17 +12,18 @@ export const theme = {
   },
   text: {
     h1: () => css`
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       line-height: 150%;
     `,
     h2: () => css`
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 17px;
+      font-weight: 500;
       line-height: 150%;
     `,
     p: () => css`
       font-size: 16px;
+      font-weight: 400;
       line-height: 150%;
     `,
   },

@@ -5,8 +5,8 @@ const StyledTask = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
   background-color: ${(props) => props.theme.colors.blueDark};
 `;
 const StyledHeading = styled.div`
@@ -14,11 +14,13 @@ const StyledHeading = styled.div`
 `;
 
 const StyledButtonComplete = styled(StyledButton)`
-  border: 3px ${(props) => props.theme.colors.blueMd} solid;
-  width: 30px;
-  height: 30px;
+  border: 2px ${(props) => props.theme.colors.blueMd} solid;
+  width: 35px;
+  height: 35px;
   svg {
-    opacity: 0;
+    stroke: ${(props) => props.theme.colors.blueLight};
+    transform: scale(0.8);
+    transform-origin: center;
   }
 `;
 
