@@ -1,6 +1,8 @@
+import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const StyledButton = styled.button`
+const StyledButton = styled(motion.button)`
   border: none;
   background-color: transparent;
   border-radius: 50%;
@@ -16,7 +18,7 @@ const StyledButton = styled.button`
   }
 `;
 
-export const Button = ({ children, onClick, className, input }) => {
+export const Button = ({ children, onClick, className }) => {
   return (
     <StyledButton className={className} onClick={onClick}>
       {children}
