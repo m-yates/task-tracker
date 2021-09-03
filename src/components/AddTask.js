@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import StyledButton from "./Button";
 
 const StyledForm = styled.form`
   display: flex;
@@ -23,21 +24,10 @@ const StyledInputText = styled.input`
   }
 `;
 
-const StyledInputSubmit = styled.button`
-  border: none;
-  outline: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const StyledButtonSubmit = styled(StyledButton)`
   background-color: ${(props) => props.theme.colors.blueLight};
-
   svg {
     stroke: ${(props) => props.theme.colors.white};
-    transform: scale(0.8);
-    transform-origin: center;
   }
 `;
 
@@ -60,7 +50,7 @@ const AddTask = ({ onAdd }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <StyledInputSubmit type="submit" value="Save task">
+      <StyledButtonSubmit>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -77,7 +67,7 @@ const AddTask = ({ onAdd }) => {
           <polyline points="17 21 17 13 7 13 7 21"></polyline>
           <polyline points="7 3 7 8 15 8"></polyline>
         </svg>
-      </StyledInputSubmit>
+      </StyledButtonSubmit>
     </StyledForm>
   );
 };
