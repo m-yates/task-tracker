@@ -33,6 +33,7 @@ const StyledButtonComplete = styled(StyledButton)`
 
 const variants = {
   task: {
+    initial: { height: "0", opacity: 0 },
     exit: { height: "0", opacity: 0 },
     animate: {
       height: "auto",
@@ -88,7 +89,7 @@ const variants = {
 
 const Task = ({ task, onDelete, onToggle }) => {
   return (
-    <StyledTask variants={variants.task} animate="animate" initial="exit">
+    <StyledTask variants={variants.task} animate="animate" initial="initial">
       <StyledHeading
         initial={false}
         variants={variants.taskHeading}
