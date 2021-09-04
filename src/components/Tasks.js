@@ -1,5 +1,5 @@
 import Task from "./Task";
-
+import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 
 const StyledTasks = styled.div`
@@ -11,14 +11,16 @@ const StyledTasks = styled.div`
 const Tasks = ({ tasks, onDelete, onToggle }) => {
   return (
     <StyledTasks>
-      {tasks.map((task) => (
-        <Task
-          key={task.id}
-          task={task}
-          onDelete={onDelete}
-          onToggle={onToggle}
-        />
-      ))}
+      <AnimatePresence>
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            task={task}
+            onDelete={onDelete}
+            onToggle={onToggle}
+          />
+        ))}
+      </AnimatePresence>
     </StyledTasks>
   );
 };

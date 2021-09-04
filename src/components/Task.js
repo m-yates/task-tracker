@@ -3,7 +3,7 @@ import StyledButton from "./Button";
 import { motion, useMotionValue } from "framer-motion";
 import { theme } from "../styles/theme";
 
-const StyledTask = styled.div`
+const StyledTask = styled(motion.h2)`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -32,6 +32,13 @@ const StyledButtonComplete = styled(StyledButton)`
 `;
 
 const variants = {
+  task: {
+    exit: { height: "0", opacity: 0 },
+    animate: {
+      height: "auto",
+      opacity: 1,
+    },
+  },
   deleteIcon: {
     exit: { stroke: `${theme.colors.blueMd}` },
     animate: {
@@ -81,7 +88,7 @@ const variants = {
 
 const Task = ({ task, onDelete, onToggle }) => {
   return (
-    <StyledTask>
+    <StyledTask variants={variants.task} animate="animate" initial="exit">
       <StyledHeading
         initial={false}
         variants={variants.taskHeading}

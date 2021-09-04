@@ -7,7 +7,6 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import styled from "styled-components";
-import { AnimatePresence } from "framer-motion";
 
 const StyledPage = styled.div`
   position: relative;
