@@ -33,20 +33,13 @@ const StyledButtonComplete = styled(StyledButton)`
 
 const variants = {
   deleteIcon: {
-    rest: { stroke: `${theme.colors.blueMd}` },
-    hover: {
+    exit: { stroke: `${theme.colors.blueMd}` },
+    animate: {
       stroke: `${theme.colors.blueLight}`,
     },
   },
   checkedWrapper: {
-    checked: {
-      opacity: 1,
-      transition: {
-        type: "tween",
-        duration: 0,
-      },
-    },
-    unchecked: {
+    exit: {
       opacity: 0,
       transition: {
         type: "tween",
@@ -54,50 +47,53 @@ const variants = {
         delay: 0.25,
       },
     },
-  },
-  checkedPath: {
-    checked: {
-      pathLength: 1,
-      pathOffset: 0,
+    animate: {
+      opacity: 1,
       transition: {
         type: "tween",
+        duration: 0,
       },
     },
-    unchecked: {
+  },
+  checkedPath: {
+    exit: {
       pathLength: 0,
       pathOffset: 1,
       transition: {
         type: "tween",
       },
     },
+    animate: {
+      pathLength: 1,
+      pathOffset: 0,
+      transition: {
+        type: "tween",
+      },
+    },
   },
   taskHeading: {
-    incomplete: { color: `${theme.colors.white}` },
-    complete: {
+    exit: { color: `${theme.colors.white}` },
+    animate: {
       color: `${theme.colors.blueMd}`,
     },
   },
 };
 
 const Task = ({ task, onDelete, onToggle }) => {
-  const pathLength = useMotionValue(0);
   return (
     <StyledTask>
       <StyledHeading
         initial={false}
         variants={variants.taskHeading}
-        animate={task.complete ? "complete" : "incomplete"}
+        animate={task.complete ? "animate" : "exit"}
       >
         {task.text}
       </StyledHeading>
-      <StyledButtonDelete
-        placeholder="A bigger password input"
-        onClick={() => onDelete(task.id)}
-      >
+      <StyledButtonDelete onClick={() => onDelete(task.id)}>
         <motion.svg
           initial={false}
-          whileHover="hover"
-          animate="rest"
+          whileHover="animate"
+          animate="exit"
           variants={variants.deleteIcon}
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -117,7 +113,7 @@ const Task = ({ task, onDelete, onToggle }) => {
       <StyledButtonComplete onClick={() => onToggle(task.id)}>
         <motion.svg
           initial={false}
-          animate={task.complete ? "checked" : "unchecked"}
+          animate={task.complete ? "animate" : "exit"}
           variants={variants.checkedWrapper}
           xmlns="http://www.w3.org/2000/svg"
           width="24"

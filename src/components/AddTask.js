@@ -35,15 +35,15 @@ const StyledButtonSubmit = styled(StyledButton)`
 
 const variants = {
   form: {
-    closed: { height: "0", opacity: 0 },
-    open: {
+    exit: { height: "0", opacity: 0 },
+    animate: {
       height: "auto",
       opacity: 1,
     },
   },
   submitIcon: {
-    rest: { stroke: `${theme.colors.blueMd}` },
-    hover: {
+    exit: { stroke: `${theme.colors.blueMd}` },
+    animate: {
       stroke: `${theme.colors.blueLight}`,
     },
   },
@@ -63,7 +63,7 @@ const AddTask = ({ onAdd, showAddTask }) => {
   return (
     <StyledForm
       initial={false}
-      animate={showAddTask ? "open" : "closed"}
+      animate={showAddTask ? "animate" : "exit"}
       variants={variants.form}
       onSubmit={onSubmit}
     >
@@ -77,7 +77,7 @@ const AddTask = ({ onAdd, showAddTask }) => {
         <motion.svg
           initial={false}
           variants={variants.submitIcon}
-          animate={text ? "hover" : "rest"}
+          animate={text ? "animate" : "exit"}
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
