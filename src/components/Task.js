@@ -38,9 +38,38 @@ const variants = {
       stroke: `${theme.colors.blueLight}`,
     },
   },
-  completeIcon: {
-    checked: { pathLength: 1, opacity: 1 },
-    unchecked: { pathLength: 0, opacity: 0 },
+  checkedWrapper: {
+    checked: {
+      opacity: 1,
+      transition: {
+        type: "tween",
+        duration: 0,
+      },
+    },
+    unchecked: {
+      opacity: 0,
+      transition: {
+        type: "tween",
+        duration: 0,
+        delay: 0.25,
+      },
+    },
+  },
+  checkedPath: {
+    checked: {
+      pathLength: 1,
+      pathOffset: 0,
+      transition: {
+        type: "tween",
+      },
+    },
+    unchecked: {
+      pathLength: 0,
+      pathOffset: 1,
+      transition: {
+        type: "tween",
+      },
+    },
   },
   taskHeading: {
     incomplete: { color: `${theme.colors.white}` },
@@ -89,6 +118,7 @@ const Task = ({ task, onDelete, onToggle }) => {
         <motion.svg
           initial={false}
           animate={task.complete ? "checked" : "unchecked"}
+          variants={variants.checkedWrapper}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -101,8 +131,7 @@ const Task = ({ task, onDelete, onToggle }) => {
           class="feather feather-check"
         >
           <motion.path
-            variants={variants.completeIcon}
-            style={{ pathLength }}
+            variants={variants.checkedPath}
             d="M20 6 9 17 4 12"
           ></motion.path>
         </motion.svg>
