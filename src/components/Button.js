@@ -14,7 +14,6 @@ const StyledButton = styled(motion.button)`
   height: 35px;
   cursor: pointer;
   svg {
-    transform: scale(0.8);
     transform-origin: center;
   }
 `;

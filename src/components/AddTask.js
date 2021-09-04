@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import StyledButton from "./Button";
 import { motion } from "framer-motion";
+import { theme } from "../styles/theme";
 
 const StyledForm = styled(motion.form)`
   display: flex;
@@ -30,31 +31,34 @@ const StyledButtonSubmit = styled(StyledButton)`
   border: none;
   width: auto;
   height: auto;
-  svg {
-    stroke: ${(props) => props.theme.colors.blueMd};
-  }
 `;
 
 const variants = {
   form: {
-    closed: { height: "0" },
+    closed: { height: "0", opacity: 0 },
     open: {
       height: "auto",
+      opacity: 1,
+    },
+  },
+  submitIcon: {
+    rest: { stroke: `${theme.colors.blueMd}` },
+    hover: {
+      stroke: `${theme.colors.blueLight}`,
     },
   },
 };
 
 const AddTask = ({ onAdd, showAddTask }) => {
   const [text, setText] = useState("");
-  console.log(showAddTask);
   const onSubmit = (e) => {
     e.preventDefault();
     if (!text) {
-      alert("please add task");
       return;
+    } else {
+      onAdd({ text });
+      setText("");
     }
-    onAdd({ text });
-    setText("");
   };
   return (
     <StyledForm
@@ -70,10 +74,13 @@ const AddTask = ({ onAdd, showAddTask }) => {
         onChange={(e) => setText(e.target.value)}
       />
       <StyledButtonSubmit>
-        <svg
+        <motion.svg
+          initial={false}
+          variants={variants.submitIcon}
+          animate={text ? "hover" : "rest"}
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -85,7 +92,7 @@ const AddTask = ({ onAdd, showAddTask }) => {
           <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
           <polyline points="17 21 17 13 7 13 7 21"></polyline>
           <polyline points="7 3 7 8 15 8"></polyline>
-        </svg>
+        </motion.svg>
       </StyledButtonSubmit>
     </StyledForm>
   );

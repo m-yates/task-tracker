@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import StyledButton from "./Button";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { theme } from "../styles/theme";
 
 const StyledTask = styled.div`
@@ -39,10 +39,8 @@ const variants = {
     },
   },
   completeIcon: {
-    incomplete: { opacity: 0 },
-    complete: {
-      opacity: 1,
-    },
+    checked: { pathLength: 1, opacity: 1 },
+    unchecked: { pathLength: 0, opacity: 0 },
   },
   taskHeading: {
     incomplete: { color: `${theme.colors.white}` },
@@ -53,6 +51,7 @@ const variants = {
 };
 
 const Task = ({ task, onDelete, onToggle }) => {
+  const pathLength = useMotionValue(0);
   return (
     <StyledTask>
       <StyledHeading
@@ -72,8 +71,8 @@ const Task = ({ task, onDelete, onToggle }) => {
           animate="rest"
           variants={variants.deleteIcon}
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -89,9 +88,8 @@ const Task = ({ task, onDelete, onToggle }) => {
       <StyledButtonComplete onClick={() => onToggle(task.id)}>
         <motion.svg
           initial={false}
-          variants={variants.completeIcon}
-          animate={task.complete ? "complete" : "incomplete"}
-          xmlns="http://www.w3.org/2000/motion.svg"
+          animate={task.complete ? "checked" : "unchecked"}
+          xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -100,9 +98,13 @@ const Task = ({ task, onDelete, onToggle }) => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="feather feather-check"
+          class="feather feather-check"
         >
-          <polyline points="20 6 9 17 4 12"></polyline>
+          <motion.path
+            variants={variants.completeIcon}
+            style={{ pathLength }}
+            d="M20 6 9 17 4 12"
+          ></motion.path>
         </motion.svg>
       </StyledButtonComplete>
     </StyledTask>
