@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import styled from "styled-components";
+import { AnimatePresence } from "framer-motion";
 
 const StyledPage = styled.div`
   position: relative;
@@ -28,6 +29,7 @@ const StyledTracker = styled.div`
 
 const StyledButtonAdd = styled(StyledButton)`
   position: fixed;
+  z-index: 10;
   bottom: 25px;
   right: 25px;
   width: 60px;
@@ -95,7 +97,7 @@ const App = () => {
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
           </StyledButtonAdd>
-          {showAddTask && <AddTask onAdd={addTask} />}
+          {showAddTask && <AddTask showAddTask={showAddTask} onAdd={addTask} />}
           {tasks.length > 0 ? (
             <Tasks
               tasks={tasks}

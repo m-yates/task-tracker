@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import StyledButton from "./Button";
+import { motion } from "framer-motion";
 
-const StyledForm = styled.form`
+const StyledForm = styled(motion.form)`
   display: flex;
   align-items: flex-end;
   column-gap: 20px;
@@ -25,14 +26,26 @@ const StyledInputText = styled.input`
 `;
 
 const StyledButtonSubmit = styled(StyledButton)`
-  background-color: ${(props) => props.theme.colors.blueLight};
+  border: none;
+  width: auto;
+  height: auto;
   svg {
-    stroke: ${(props) => props.theme.colors.white};
+    stroke: ${(props) => props.theme.colors.blueMd};
   }
 `;
 
-const AddTask = ({ onAdd }) => {
+const variants = {
+  form: {
+    closed: { height: 0 },
+    open: {
+      height: "300px",
+    },
+  },
+};
+
+const AddTask = ({ onAdd, showAddTask }) => {
   const [text, setText] = useState("");
+  console.log(showAddTask);
   const onSubmit = (e) => {
     e.preventDefault();
     if (!text) {
@@ -43,7 +56,12 @@ const AddTask = ({ onAdd }) => {
     setText("");
   };
   return (
-    <StyledForm onSubmit={onSubmit}>
+    <StyledForm
+      initial={false}
+      animate={showAddTask ? "open" : "closed"}
+      variants={variants.form}
+      onSubmit={onSubmit}
+    >
       <StyledInputText
         type="text"
         placeholder="Start typing..."

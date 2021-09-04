@@ -53,7 +53,6 @@ const variants = {
 };
 
 const Task = ({ task, onDelete, onToggle }) => {
-  console.log(task.complete);
   return (
     <StyledTask>
       <StyledHeading
