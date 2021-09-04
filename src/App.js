@@ -80,7 +80,9 @@ const App = () => {
       <StyledPage>
         <StyledTracker>
           <StyledTitle>What needs doing?</StyledTitle>
-          <StyledButtonAdd onClick={() => setShowAddTask(!showAddTask)}>
+          <StyledButtonAdd
+            onClick={() => setShowAddTask((showAddTask) => !showAddTask)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -97,7 +99,7 @@ const App = () => {
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
           </StyledButtonAdd>
-          {showAddTask && <AddTask showAddTask={showAddTask} onAdd={addTask} />}
+          <AddTask showAddTask={showAddTask} onAdd={addTask} />
           {tasks.length > 0 ? (
             <Tasks
               tasks={tasks}

@@ -8,6 +8,7 @@ const StyledForm = styled(motion.form)`
   align-items: flex-end;
   column-gap: 20px;
   margin-bottom: 30px;
+  overflow: hidden;
 `;
 
 const StyledInputText = styled.input`
@@ -36,9 +37,9 @@ const StyledButtonSubmit = styled(StyledButton)`
 
 const variants = {
   form: {
-    closed: { height: 0 },
+    closed: { height: "0" },
     open: {
-      height: "300px",
+      height: "auto",
     },
   },
 };
