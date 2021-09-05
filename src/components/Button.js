@@ -14,8 +14,9 @@ const StyledButton = styled(motion.button)`
   height: 35px;
   cursor: pointer;
   transform-origin: center;
-  &:focus {
-    outline: 1px dashed ${(props) => props.theme.colors.blueLight};
+  &:focus,
+  &:active {
+    outline: none;
   }
   svg {
     transform-origin: center;

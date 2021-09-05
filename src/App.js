@@ -46,10 +46,6 @@ const StyledButtonAdd = styled(StyledButton)`
   height: 60px;
   background-color: ${(props) => props.theme.colors.blueLight};
   color: ${(props) => props.theme.colors.white};
-  &:focus,
-  &:active {
-    outline: none;
-  }
   @media (min-width: 600px) {
     bottom: 15vh;
   }
