@@ -4,7 +4,7 @@ A task tracker app.
 
 Built with [React](https://github.com/facebook/create-react-app), [Framer Motion](https://github.com/framer/motion) and [Styled Components](https://github.com/styled-components/styled-components).
 
-See the working app [here](https://mattyatesdev-stories-from-space.netlify.app).
+See the working app [here](https://mattyatesdev-task-tracker.netlify.app).
 
 ## Installation
 
