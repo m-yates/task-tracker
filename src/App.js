@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const StyledPage = styled.div`
   position: relative;
@@ -45,16 +46,31 @@ const StyledButtonAdd = styled(StyledButton)`
   height: 60px;
   background-color: ${(props) => props.theme.colors.blueLight};
   color: ${(props) => props.theme.colors.white};
-  &:focus {
-    outline: 2px ${(props) => props.theme.colors.white} solid;
+  &:focus,
+  &:active {
+    outline: none;
   }
   @media (min-width: 600px) {
     bottom: 15vh;
   }
-  svg {
-    transform-origin: center;
-  }
 `;
+
+const StyledButtonAddInner = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const variants = {
+  addButton: {
+    animate: {
+      rotate: -45,
+    },
+    exit: {
+      rotate: 0,
+    },
+  },
+};
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -97,21 +113,27 @@ const App = () => {
           <StyledButtonAdd
             onClick={() => setShowAddTask((showAddTask) => !showAddTask)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-plus"
+            <StyledButtonAddInner
+              initial={false}
+              animate={showAddTask ? "animate" : "exit"}
+              variants={variants.addButton}
             >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-plus"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </StyledButtonAddInner>
           </StyledButtonAdd>
           <AddTask showAddTask={showAddTask} onAdd={addTask} />
           {tasks.length > 0 ? (
