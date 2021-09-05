@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import StyledButton from "./Button";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
 
 const StyledTask = styled(motion.div)`
@@ -143,7 +143,7 @@ const Task = ({ task, onDelete, onToggle }) => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          class="feather feather-check"
+          className="feather feather-check"
         >
           <motion.path
             variants={variants.checkedPath}

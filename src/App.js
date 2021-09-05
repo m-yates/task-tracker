@@ -12,8 +12,6 @@ const StyledPage = styled.div`
   position: relative;
   min-height: 100vh;
   display: flex;
-  margin: 0 auto;
-  ${(props) => props.theme.mixins.pageLayout()};
 `;
 
 const StyledTitle = styled.h1`
@@ -28,28 +26,32 @@ const StyledHeading = styled.h2`
 const StyledTracker = styled.div`
   width: 100%;
   display: flex;
+  padding: 30px;
   flex-direction: column;
-`;
-
-const StyledButtonAddWrapper = styled.div`
-  position: fixed;
-  display: flex;
-  justify-content: flex-end;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  ${(props) => props.theme.mixins.pageLayout()};
+  @media (min-width: 600px) {
+    width: 600px;
+    margin: 0 auto;
+    padding: 15vh 0;
+  }
 `;
 
 const StyledButtonAdd = styled(StyledButton)`
-  position: relative;
+  position: fixed;
+  z-index: 10;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 60px;
   height: 60px;
   background-color: ${(props) => props.theme.colors.blueLight};
   color: ${(props) => props.theme.colors.white};
+  &:focus {
+    outline: 2px ${(props) => props.theme.colors.white} solid;
+  }
+  @media (min-width: 600px) {
+    bottom: 15vh;
+  }
   svg {
-    transform: scale(1.1);
     transform-origin: center;
   }
 `;
@@ -92,28 +94,25 @@ const App = () => {
       <StyledPage>
         <StyledTracker>
           <StyledTitle>What needs doing?</StyledTitle>
-          <StyledButtonAddWrapper>
-            <StyledButtonAdd
-              onClick={() => setShowAddTask((showAddTask) => !showAddTask)}
+          <StyledButtonAdd
+            onClick={() => setShowAddTask((showAddTask) => !showAddTask)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-plus"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-plus"
-              >
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </StyledButtonAdd>
-          </StyledButtonAddWrapper>
-
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </StyledButtonAdd>
           <AddTask showAddTask={showAddTask} onAdd={addTask} />
           {tasks.length > 0 ? (
             <Tasks

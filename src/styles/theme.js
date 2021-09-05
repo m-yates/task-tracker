@@ -6,7 +6,6 @@ export const theme = {
     blueDark: "#1c2341",
     blueMd: "#394f6b",
     blueLight: "#55BEC0",
-    blueBright: "#6DFFE7",
     white: "#ffffff",
   },
   text: {
@@ -24,17 +23,6 @@ export const theme = {
       font-size: 16px;
       font-weight: 400;
       line-height: 150%;
-    `,
-  },
-  mixins: {
-    pageLayout: () => css`
-      width: 100%;
-      margin: 0 auto;
-      padding: 30px 20px;
-      @media (min-width: 600px) {
-        width: 600px;
-        padding: 15vh 0;
-      }
     `,
   },
 };

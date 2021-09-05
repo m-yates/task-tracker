@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 const StyledButton = styled(motion.button)`
   border: none;
+  box-shadow: none;
   background-color: transparent;
   border-radius: 50%;
   display: flex;
@@ -12,6 +13,9 @@ const StyledButton = styled(motion.button)`
   width: 35px;
   height: 35px;
   cursor: pointer;
+  &:focus {
+    outline: 2px ${(props) => props.theme.colors.blueLight} solid;
+  }
   svg {
     transform-origin: center;
   }

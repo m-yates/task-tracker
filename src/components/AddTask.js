@@ -14,6 +14,7 @@ const StyledFormInner = styled.div`
   column-gap: 20px;
   overflow: hidden;
   padding-bottom: 20px;
+  padding-right: 2px;
 `;
 
 const StyledInputText = styled.input`

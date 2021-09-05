@@ -1,4 +1,5 @@
 import { createGlobalStyle as css } from "styled-components";
+import { theme } from "./theme";
 
 export const GlobalStyle = css`
   *,
@@ -11,7 +12,7 @@ export const GlobalStyle = css`
     font-weight: 400;
   }
   body {
-    background-color: ${(props) => props.theme.colors.blueDarkest};
-    color: ${(props) => props.theme.colors.white};
+    background-color: ${theme.colors.blueDarkest};
+    color: ${theme.colors.white};
   }
 `;
