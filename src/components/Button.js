@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const StyledButton = styled(motion.button)`
-  z-index: 1;
   border: none;
   background-color: transparent;
   border-radius: 50%;

@@ -11,13 +11,18 @@ import styled from "styled-components";
 const StyledPage = styled.div`
   position: relative;
   min-height: 100vh;
-  padding: 30px 25px;
   display: flex;
+  margin: 0 auto;
+  ${(props) => props.theme.mixins.pageLayout()};
 `;
 
 const StyledTitle = styled.h1`
   ${(props) => props.theme.text.h1};
   margin-bottom: 15px;
+`;
+
+const StyledHeading = styled.h2`
+  ${(props) => props.theme.text.h2};
 `;
 
 const StyledTracker = styled.div`
@@ -26,11 +31,19 @@ const StyledTracker = styled.div`
   flex-direction: column;
 `;
 
-const StyledButtonAdd = styled(StyledButton)`
+const StyledButtonAddWrapper = styled.div`
   position: fixed;
-  z-index: 10;
-  bottom: 25px;
-  right: 25px;
+  display: flex;
+  justify-content: flex-end;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  ${(props) => props.theme.mixins.pageLayout()};
+`;
+
+const StyledButtonAdd = styled(StyledButton)`
+  position: relative;
   width: 60px;
   height: 60px;
   background-color: ${(props) => props.theme.colors.blueLight};
@@ -79,25 +92,28 @@ const App = () => {
       <StyledPage>
         <StyledTracker>
           <StyledTitle>What needs doing?</StyledTitle>
-          <StyledButtonAdd
-            onClick={() => setShowAddTask((showAddTask) => !showAddTask)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-plus"
+          <StyledButtonAddWrapper>
+            <StyledButtonAdd
+              onClick={() => setShowAddTask((showAddTask) => !showAddTask)}
             >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </StyledButtonAdd>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-plus"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </StyledButtonAdd>
+          </StyledButtonAddWrapper>
+
           <AddTask showAddTask={showAddTask} onAdd={addTask} />
           {tasks.length > 0 ? (
             <Tasks
@@ -106,7 +122,7 @@ const App = () => {
               onToggle={toggleComplete}
             />
           ) : (
-            "Nothing to do!"
+            <StyledHeading>Nothing to do!</StyledHeading>
           )}
         </StyledTracker>
       </StyledPage>

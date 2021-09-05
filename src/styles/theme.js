@@ -1,4 +1,3 @@
-import { between } from "polished";
 import { css } from "styled-components";
 
 export const theme = {
@@ -25,6 +24,17 @@ export const theme = {
       font-size: 16px;
       font-weight: 400;
       line-height: 150%;
+    `,
+  },
+  mixins: {
+    pageLayout: () => css`
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 20px;
+      @media (min-width: 600px) {
+        width: 600px;
+        padding: 15vh 0;
+      }
     `,
   },
 };

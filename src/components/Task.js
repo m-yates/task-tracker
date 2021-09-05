@@ -3,19 +3,20 @@ import StyledButton from "./Button";
 import { motion, useMotionValue } from "framer-motion";
 import { theme } from "../styles/theme";
 
-const StyledTask = styled(motion.h2)`
+const StyledTask = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 12px 20px;
   border-radius: 12px;
   column-gap: 15px;
   background-color: ${(props) => props.theme.colors.blueDark};
+  overflow: hidden;
 `;
 
 const StyledHeading = styled(motion.h2)`
   flex-grow: 1;
   ${(props) => props.theme.text.h2};
+  padding: 20px 0 20px 20px;
 `;
 
 const StyledButtonDelete = styled(StyledButton)`
@@ -26,6 +27,7 @@ const StyledButtonDelete = styled(StyledButton)`
 
 const StyledButtonComplete = styled(StyledButton)`
   border: 2px ${(props) => props.theme.colors.blueMd} solid;
+  margin-right: 20px;
   svg {
     stroke: ${(props) => props.theme.colors.blueLight};
   }
@@ -94,8 +96,8 @@ const Task = ({ task, onDelete, onToggle }) => {
   return (
     <StyledTask
       variants={variants.task}
-      animate="animate"
       initial="initial"
+      animate="animate"
       exit="exit"
       layout
     >

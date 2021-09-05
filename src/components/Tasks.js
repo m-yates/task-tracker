@@ -10,8 +10,8 @@ const StyledTasks = styled.div`
 
 const Tasks = ({ tasks, onDelete, onToggle }) => {
   return (
-    <AnimatePresence initial={false}>
-      <StyledTasks layout>
+    <StyledTasks>
+      <AnimatePresence initial={false}>
         {tasks.map((task) => (
           <Task
             key={task.id}
@@ -20,8 +20,8 @@ const Tasks = ({ tasks, onDelete, onToggle }) => {
             onToggle={onToggle}
           />
         ))}
-      </StyledTasks>
-    </AnimatePresence>
+      </AnimatePresence>
+    </StyledTasks>
   );
 };
 
