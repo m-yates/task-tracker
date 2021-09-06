@@ -19,7 +19,6 @@ const StyledFormInner = styled.div`
 
 const StyledInputText = styled.input`
   border: none;
-  outline: none;
   background-color: transparent;
   flex-grow: 1;
   border-bottom: 2px ${(props) => props.theme.colors.blueMd} solid;
@@ -29,6 +28,9 @@ const StyledInputText = styled.input`
   &::placeholder {
     ${(props) => props.theme.text.p};
     color: ${(props) => props.theme.colors.blueMd};
+  }
+  &:focus {
+    outline: 2px ${(props) => props.theme.colors.blueLight} dashed;
   }
 `;
 
