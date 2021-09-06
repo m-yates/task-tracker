@@ -32,7 +32,7 @@ const StyledTracker = styled.div`
   @media (min-width: 600px) {
     width: 600px;
     margin: 0 auto;
-    padding: 15vh 0;
+    padding: 10vh 0 10vh 0;
   }
 `;
 
@@ -47,7 +47,7 @@ const StyledButtonAdd = styled(StyledButton)`
   background-color: ${(props) => props.theme.colors.blueLight};
   color: ${(props) => props.theme.colors.white};
   @media (min-width: 600px) {
-    bottom: 15vh;
+    bottom: 15vh 0 10vh 0;
   }
 `;
 

@@ -13,8 +13,7 @@ const StyledFormInner = styled.div`
   align-items: flex-end;
   column-gap: 20px;
   overflow: hidden;
-  padding-bottom: 20px;
-  padding-right: 2px;
+  padding: 2px 2px 20px 2px;
 `;
 
 const StyledInputText = styled.input`
