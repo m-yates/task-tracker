@@ -2,6 +2,7 @@ import styled from "styled-components";
 import StyledButton from "./Button";
 import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
+import { defaultTransition } from "../constants/animations";
 
 const StyledTask = styled(motion.div)`
   display: flex;
@@ -39,16 +40,30 @@ const variants = {
     exit: {
       height: "0",
       opacity: 0,
+      transition: {
+        ...defaultTransition,
+      },
     },
     animate: {
       height: "auto",
       opacity: 1,
+      transition: {
+        ...defaultTransition,
+      },
     },
   },
   deleteIcon: {
-    exit: { stroke: `${theme.colors.blueMd}` },
+    exit: {
+      stroke: `${theme.colors.blueMd}`,
+      transition: {
+        ...defaultTransition,
+      },
+    },
     animate: {
       stroke: `${theme.colors.blueLight}`,
+      transition: {
+        ...defaultTransition,
+      },
     },
   },
   checkedWrapper: {
@@ -57,7 +72,7 @@ const variants = {
       transition: {
         type: "tween",
         duration: 0,
-        delay: 0.25,
+        delay: 0.4,
       },
     },
     animate: {
@@ -73,21 +88,29 @@ const variants = {
       pathLength: 0,
       pathOffset: 1,
       transition: {
-        type: "tween",
+        ...defaultTransition,
       },
     },
     animate: {
       pathLength: 1,
       pathOffset: 0,
       transition: {
-        type: "tween",
+        ...defaultTransition,
       },
     },
   },
   taskHeading: {
-    exit: { color: `${theme.colors.white}` },
+    exit: {
+      color: `${theme.colors.white}`,
+      transition: {
+        ...defaultTransition,
+      },
+    },
     animate: {
       color: `${theme.colors.blueMd}`,
+      transition: {
+        ...defaultTransition,
+      },
     },
   },
 };

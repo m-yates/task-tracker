@@ -3,6 +3,7 @@ import styled from "styled-components";
 import StyledButton from "./Button";
 import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
+import { defaultTransition } from "../constants/animations";
 
 const StyledForm = styled(motion.form)`
   overflow: hidden;
@@ -44,16 +45,32 @@ const variants = {
     exit: {
       height: "0",
       opacity: 0,
+      transition: {
+        ...defaultTransition,
+      },
     },
     animate: {
       height: "auto",
       opacity: 1,
+      transition: {
+        ...defaultTransition,
+      },
     },
   },
   submitIcon: {
-    exit: { stroke: `${theme.colors.blueMd}` },
+    exit: {
+      stroke: `${theme.colors.blueMd}`,
+      transition: {
+        type: "tween",
+        duration: 0,
+        delay: 0.4,
+      },
+    },
     animate: {
       stroke: `${theme.colors.blueLight}`,
+      transition: {
+        ...defaultTransition,
+      },
     },
   },
 };

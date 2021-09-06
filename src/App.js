@@ -8,6 +8,7 @@ import { theme } from "./styles/theme";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { defaultTransition } from "./constants/animations";
 
 const StyledPage = styled.div`
   position: relative;
@@ -61,9 +62,15 @@ const variants = {
   addButton: {
     animate: {
       rotate: -45,
+      transition: {
+        ...defaultTransition,
+      },
     },
     exit: {
       rotate: 0,
+      transition: {
+        ...defaultTransition,
+      },
     },
   },
 };
